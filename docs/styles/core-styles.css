@@ -1,0 +1,895 @@
+/**
+ * Core Styles - Shared across all sections
+ * Typography, Layout, Tables, Responsive Design
+ */
+
+/* Core Variables */
+:root {
+    --sidebar-width: 260px;
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
+    --accent-purple: #8b5cf6;
+    --accent-teal: #14b8a6;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --bg-main: #ffffff;
+    --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    --bg-sidebar: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+    
+    /* Color bars for tables */
+    --color-blue: #3b82f6;
+    --color-orange: #f97316;
+    --color-purple: #a855f7;
+    --color-cyan: #06b6d4;
+    --color-yellow: #eab308;
+    --color-green: #22c55e;
+    --color-red: #ef4444;
+    --color-gray: #6b7280;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base Typography */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    color: var(--text-primary);
+    background: var(--bg-gradient);
+    line-height: 1.6;
+    font-feature-settings: 'cv01', 'cv02', 'cv03', 'cv04';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mode-specific font scaling */
+body.slides-mode {
+    font-size: 24px;
+}
+
+/* Layout */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    padding: 2rem 0;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 1px 0 10px rgba(0,0,0,0.05);
+}
+
+.sidebar h2 {
+    padding: 0 1.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.logo-nav {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 1.5rem auto 1.5rem auto;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.nav-section {
+    margin-bottom: 2rem;
+}
+
+.nav-section h3 {
+    padding: 0 1.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+}
+
+.nav-link:hover {
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.1) 0%, transparent 100%);
+    color: var(--primary);
+    padding-left: 1.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link.active {
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.15) 0%, transparent 100%);
+    color: var(--primary);
+    border-left: 3px solid var(--primary);
+    font-weight: 600;
+}
+
+/* Main Content */
+.main {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    padding: 2rem 3rem;
+    max-width: 1200px;
+}
+
+body.slides-mode .sidebar {
+    display: none;
+}
+
+body.slides-mode .main {
+    margin-left: 0;
+    padding: 3rem 4rem;
+    max-width: none;
+}
+
+/* Mode Toggle */
+.mode-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    display: flex;
+    gap: 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    padding: 4px;
+    border-radius: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1), 
+                0 0 1px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.mode-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mode-btn:hover {
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--primary);
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+/* Typography */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent-purple) 100%);
+    border-radius: 2px;
+}
+
+body.slides-mode h1 {
+    font-size: 52px;
+    margin-bottom: 3rem;
+    text-align: left;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin: 2.5rem 0 1.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 0;
+    position: relative;
+    padding-left: 1rem;
+}
+
+h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 1.5em;
+    background: linear-gradient(180deg, var(--accent-teal) 0%, var(--primary) 100%);
+    border-radius: 2px;
+}
+
+body.slides-mode h2 {
+    font-size: 44px;
+    margin: 0 0 2rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+body.slides-mode h3 {
+    font-size: 34px;
+    margin: 1.5rem 0 1rem;
+    font-weight: 500;
+}
+
+/* Content Sections */
+p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+    max-width: 900px;
+    color: var(--text-primary);
+}
+
+/* Style for standalone strong/em text (like subheadings) - disabled to prevent blue text in lists
+p:has(> strong:only-child),
+p:has(> em:only-child) {
+    margin: 1.5rem 0 1rem;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: -0.01em;
+} */
+
+ul, ol {
+    margin: 1rem 0 1.5rem;
+    padding-left: 1.5rem;
+    max-width: 900px;
+}
+
+li::marker {
+    color: var(--text-primary);
+}
+
+body.slides-mode p {
+    font-size: 28px;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+}
+
+body.slides-mode ul,
+body.slides-mode ol {
+    font-size: 28px;
+    line-height: 1.8;
+    margin: 1.5rem 0 2rem;
+    padding-left: 2rem;
+    max-width: 100%;
+}
+
+/* Special styling for emphasized paragraphs - disabled to keep text black
+p strong:first-child {
+    color: var(--primary);
+    font-size: 1.1em;
+} */
+
+/* Horizontal rules */
+hr {
+    margin: 2.5rem 0;
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+/* Tables - Enhanced style */
+table {
+    width: auto;
+    border-collapse: collapse;
+    margin: 1.5rem auto;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 14px;
+    max-width: 850px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04),
+                0 0 1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+table:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08),
+                0 0 1px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+th {
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+}
+
+td {
+    padding: 0.5rem 0.9rem;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 14px;
+    white-space: nowrap;
+    color: var(--text-primary);
+}
+
+tbody tr:nth-child(even) td {
+    background: rgba(248, 250, 252, 0.5);
+}
+
+/* Better sizing in slides mode */
+body.slides-mode table {
+    font-size: 18px;
+    max-width: 80%;
+    margin: 2rem auto;
+}
+
+body.slides-mode th {
+    padding: 0.75rem 1rem;
+    font-size: 16px;
+    background: #f8f9fa;
+}
+
+body.slides-mode td {
+    padding: 0.5rem 1rem;
+    font-size: 18px;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover td:not(.color-bar):not(.annotation) {
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    transition: background 0.2s ease;
+}
+
+/* Side-by-side layout for tables and content */
+.side-by-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem auto;
+    max-width: 100%;
+    align-items: start;
+}
+
+.side-by-side > div {
+    min-width: 0; /* Prevent overflow */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Ensure tables in side-by-side fit properly - extra compact */
+.side-by-side table {
+    margin: 0 auto;
+    max-width: 100%;
+    font-size: 0.75rem;
+}
+
+.side-by-side th {
+    padding: 0.25rem 0.4rem;
+    font-size: 0.65rem;
+}
+
+.side-by-side td {
+    padding: 0.2rem 0.35rem;
+    font-size: 0.75rem;
+}
+
+/* Ensure code blocks in side-by-side fit properly */
+.side-by-side pre {
+    margin: 0;
+}
+
+/* Align SQL blocks at top when paired with debug tables */
+.side-by-side.align-top > div {
+    align-items: flex-start;
+}
+
+/* For slides mode - maintain side-by-side but adjust sizing */
+.slides-mode .side-by-side {
+    max-width: 95%;
+    gap: 1rem;
+}
+
+.slides-mode .side-by-side table {
+    font-size: 0.8rem;
+    max-width: 100%;
+}
+
+.slides-mode .side-by-side th {
+    padding: 0.25rem 0.35rem;
+    font-size: 0.7rem;
+}
+
+.slides-mode .side-by-side td {
+    padding: 0.2rem 0.3rem;
+    font-size: 0.8rem;
+}
+
+/* Responsive: Stack on smaller screens */
+@media (max-width: 1200px) {
+    body:not(.slides-mode) .side-by-side {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* For 3+ column layouts */
+.side-by-side.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.side-by-side.cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive for multi-column */
+@media (max-width: 1400px) {
+    body:not(.slides-mode) .side-by-side.cols-3,
+    body:not(.slides-mode) .side-by-side.cols-4 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    body:not(.slides-mode) .side-by-side.cols-3,
+    body:not(.slides-mode) .side-by-side.cols-4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Annotation columns - visually different */
+th.annotation {
+    background: #fef3c7;
+    font-style: italic;
+    text-transform: none;
+    color: #92400e;
+    border-left: 2px dotted #f59e0b;
+}
+
+td.annotation {
+    background: #fffbeb;
+    font-style: italic;
+    color: #78716c;
+    font-size: 0.8rem;
+    border-left: 2px dotted #fbbf24;
+}
+
+body.slides-mode td.annotation {
+    font-size: 0.85rem;
+}
+
+/* Color bars - EXACT 3px width */
+.color-bar {
+    width: 3px !important;
+    max-width: 3px !important;
+    padding: 0 !important;
+    border: none;
+}
+
+/* Override for side-by-side layouts */
+.side-by-side td.color-bar,
+.side-by-side th.color-bar {
+    min-width: 3px !important;
+    width: 3px !important;
+    max-width: 3px !important;
+    padding: 0 !important;
+}
+
+/* Force color bars to be visible in wide tables */
+.side-by-side table td.color-bar,
+.side-by-side table th.color-bar {
+    min-width: 3px !important;
+    width: 3px !important;
+    max-width: 3px !important;
+    padding: 0 !important;
+}
+
+/* Override for slides mode side-by-side */
+.slides-mode .side-by-side td.color-bar,
+.slides-mode .side-by-side th.color-bar {
+    width: 3px !important;
+    max-width: 3px !important;
+    padding: 0 !important;
+}
+
+/* Color bar specific colors */
+.color-bar.blue { background: var(--color-blue) !important; }
+.color-bar.orange { background: var(--color-orange) !important; }
+.color-bar.purple { background: var(--color-purple) !important; }
+.color-bar.cyan { background: var(--color-cyan) !important; }
+.color-bar.green { background: var(--color-green) !important; }
+.color-bar.yellow { background: var(--color-yellow) !important; }
+.color-bar.red { background: var(--color-red) !important; }
+.color-bar.gray { background: var(--color-gray) !important; }
+
+/* NULL values styling */
+.null-value {
+    background: #e5e7eb;
+    color: #6b7280;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Code Blocks - General */
+pre {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    position: relative;
+}
+
+code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+}
+
+/* List items */
+li {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary) !important;
+}
+
+body.slides-mode li {
+    margin-bottom: 0.75rem;
+    color: var(--text-primary) !important;
+}
+
+/* Ensure list text is black, not blue */
+ul li, ol li {
+    color: var(--text-primary) !important;
+}
+
+/* Keep strong text black in lists */
+li strong {
+    color: inherit;
+    font-weight: 600;
+}
+
+/* Ensure paragraphs inside list items are black, not blue */
+li p {
+    color: var(--text-primary) !important;
+}
+
+/* Override any inherited blue styling for list content */
+ol li p, ul li p {
+    color: var(--text-primary) !important;
+}
+
+/* Ensure all text in lists stays black */
+li, li * {
+    color: var(--text-primary) !important;
+}
+
+/* Lightweight in-page TOC, reuses .nav-link styles */
+.toc-nav {
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    z-index: 50;
+}
+
+/* Enhanced nav-section styling for TOC - more compact */
+.toc-nav .nav-section {
+    margin-bottom: 1.5rem;
+}
+
+.toc-nav .nav-section h3 {
+    padding: 0 1.5rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.25rem;
+}
+
+.toc-nav .nav-section ul {
+    padding-left: 0;
+}
+
+.toc-nav .nav-section li {
+    margin-bottom: 0.1rem;
+}
+
+/* More compact nav-link styling */
+.toc-nav .nav-link {
+    padding: 0.4rem 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+/* Sub-links with proper indentation - more compact */
+.toc-nav .sub { 
+    margin-left: 0.5rem; 
+    font-size: 0.8rem; 
+    opacity: 0.9; 
+    position: relative;
+}
+.toc-nav .sub.nav-link { 
+    padding: 0.3rem 0.6rem 0.3rem 1.2rem; 
+    border-left: 2px solid transparent;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+}
+.toc-nav .sub.nav-link:hover {
+    border-left-color: var(--primary);
+    background: rgba(37,99,235,0.05);
+}
+.toc-nav .sub.nav-link.active {
+    border-left-color: var(--primary);
+    background: rgba(37,99,235,0.1);
+}
+
+/* When combined with .sidebar, override some positioning - more compact */
+.sidebar.toc-nav {
+    padding: 1.5rem 0;
+    border-radius: 0;
+    box-shadow: 1px 0 10px rgba(0,0,0,0.05);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* Positioning (desktop fixed; mobile drawer) */
+@media (min-width: 1024px) {
+    body.has-sidenav { padding-left: 300px; }
+    .toc-nav {
+        position: fixed; left: 16px; top: 100px;
+        width: 220px; max-height: calc(100vh - 120px); overflow: auto;
+    }
+    .sidebar.toc-nav {
+        left: 0; top: 0; width: var(--sidebar-width); height: 100vh;
+        max-height: none;
+    }
+}
+@media (max-width: 1023px) {
+    .toc-nav {
+        position: fixed; left: 0; top: 0; bottom: 0;
+        width: 75%; max-width: 300px;
+        transform: translateX(-100%);
+        transition: transform .3s cubic-bezier(.4,0,.2,1);
+        border-radius: 0 12px 12px 0;
+    }
+    body.sidenav-open .toc-nav { transform: translateX(0); }
+}
+
+/* Minimal callouts to replace inline styles */
+.callout { 
+    border-radius: 12px; 
+    padding: 1.25rem; 
+    margin: 1.5rem 0; 
+    border: 1px solid var(--border); 
+    background: #fff; 
+}
+.callout.success { background: #f0fdf4; border-color: #86efac; }
+.callout.info    { background: #eff6ff; border-color: #3b82f6; }
+.callout.warning { background: #fef3c7; border-color: #fbbf24; }
+.callout.danger  { background: #fee2e2; border-color: #ef4444; }
+
+/* Simple top navigation */
+.top-nav {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-sidebar);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+.top-nav a {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    transition: all .2s;
+}
+
+.top-nav a:hover {
+    background: rgba(37,99,235,0.08);
+    color: var(--primary);
+}
+
+.top-nav a.active {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.25);
+}
+
+/* =====================================================
+   SQL CODE BLOCKS - SHARED ACROSS ALL SECTIONS  
+   ===================================================== */
+
+/* General Pre Tag Defaults - Light theme base */
+pre {
+    padding: 1.5rem 1.75rem;
+    border-radius: 12px;
+    margin: 1.5rem auto;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Menlo', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 850px;
+    position: relative;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+}
+
+/* SQL Code Blocks - Dark theme with professional styling */
+pre.codehilite, 
+pre.language-sql,
+pre.language-python,
+pre.language-js,
+pre.language-javascript {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%) !important;
+    color: #e6edf3 !important;
+    border: 1px solid rgba(56, 139, 253, 0.15) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                0 0 40px rgba(37, 99, 235, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Auto-detect SQL blocks by presence of SQL syntax highlighting spans */
+pre:has(.sql-keyword),
+pre:has(.sql-comment),
+pre:has(.sql-table),
+pre:has(.sql-function) {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%) !important;
+    color: #e6edf3 !important;
+    border: 1px solid rgba(56, 139, 253, 0.15) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                0 0 40px rgba(37, 99, 235, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* JavaScript fallback for SQL detection */
+pre.sql-detected {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%) !important;
+    color: #e6edf3 !important;
+    border: 1px solid rgba(56, 139, 253, 0.15) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                0 0 40px rgba(37, 99, 235, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Light Display Theme for sequences, algorithms, etc. */
+pre.light-display {
+    background: rgba(255, 255, 255, 0.95);
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+pre:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15), 
+                0 0 60px rgba(37, 99, 235, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border-color: rgba(56, 139, 253, 0.3);
+}
+
+/* SQL label in top-right corner */
+pre::before {
+    content: 'SQL';
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    font-size: 10px;
+    color: #7ee787;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    font-family: 'Inter', -apple-system, sans-serif;
+    padding: 2px 8px;
+    background: rgba(126, 231, 135, 0.1);
+    border: 1px solid rgba(126, 231, 135, 0.2);
+    border-radius: 4px;
+}
+
+/* SQL Syntax Highlighting - High contrast dark theme */
+.sql-keyword { color: #79c0ff; font-weight: 600; }
+.sql-string { color: #a5d6ff; }
+.sql-number { color: #ff7b72; }
+.sql-operator { color: #c9d1d9; }
+.sql-comment { 
+    color: #f0ad4e;  /* Warm orange - pleasant and visible */
+    font-weight: normal;  /* Regular weight, not bold */
+    opacity: 1.0;  /* Full visibility for presentations */
+    background: rgba(240, 173, 78, 0.08);  /* Very subtle orange background */
+    padding: 1px 4px;
+    border-radius: 3px;
+    text-shadow: 0 0 1px rgba(240, 173, 78, 0.2);  /* Subtle glow */
+}
+.sql-function { color: #d2a8ff; font-weight: 500; }
+.sql-table { color: #7ee787; font-weight: 600; }
+
+/* Ensure inline code doesn't interfere with SQL blocks */
+code {
+    background: #f1f5f9;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Fira Code', 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+}
+
+/* Enhanced styling for slides mode */
+body.slides-mode pre {
+    font-size: 20px;
+    padding: 2rem 2.5rem;
+    max-width: 90%;
+    margin: 2rem auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 
+                0 0 80px rgba(37, 99, 235, 0.15);
+}
